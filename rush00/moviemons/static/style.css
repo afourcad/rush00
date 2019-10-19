@@ -1,11 +1,4 @@
-/* body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
-
-
-.consoleArea, .screen, .arrow, .middleButtons, .ABButtons{
+.consoleArea, .screen, .arrow, .middleButtons, .ABButtons, .optStrtButton{
     border: 1px solid black;
     border-radius: 30px;
 }
@@ -41,9 +34,9 @@ tr, td{
     height: 35px;
 }
 
-.arrow .buttonArrow{
+.arrow .buttonArrow, .optStrtButton{
     color: grey;
-     background-image: linear-gradient(45deg, grey, #474748);
+    background-image: linear-gradient(45deg, grey, #474748);
     border: 5px solid #5c5c5d;
 }
 
@@ -53,13 +46,44 @@ tr, td{
     border: 5px solid #dd4848;
 }
 
+.buttonAB{
+    border-radius: 50%;
+}
+
 .middleButtons{
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    width: 105px;
+    height: 105px;
 }
-.middleButtons, .optSlectButton{
+
+.optStrtButton{
     margin: 10px;
     height: 15px;
     width: 35px;
+}
+
+.select, .start{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.letter{
+    margin: 0 13px;
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.arrow td a{
+    width: 100%;
+    height: 100%;
+    display: block;
 }
