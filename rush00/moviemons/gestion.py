@@ -170,7 +170,7 @@ class Gestion():
 
 
 # singleton object
-db = Gestion();
+session = Gestion();
 
 
 
