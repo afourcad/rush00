@@ -136,3 +136,8 @@ MOVIEMON = {
     'INITIAL_PLAYER_POS' : [50, 50],
     'GRID_SIZE': [0, 100]
 }
+
+OMDB = {
+    'url': 'http://www.omdbapi.com/?t=',
+    'key': '89ef1ac6'
+}

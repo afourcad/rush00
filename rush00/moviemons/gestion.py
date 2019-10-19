@@ -4,6 +4,7 @@ from django.conf import settings
 class Gestion():
 
 	def __init__(self):
+		self.sessionName = 'session.pickle'
 		params = getattr(settings, "MOVIEMON", None)
 		if not params:
 			print('Missing setting MOVIEMON')
@@ -34,7 +35,7 @@ class Gestion():
 		self.Strenght        = 0
 		self.index 			 = 0
 
-	def set_value(cls,
+	def set_value(self,
 				new_corrd,
 				new_movieballs,
 				new_Moviemons,
@@ -45,15 +46,15 @@ class Gestion():
 				new_mapy = 50,
 				new_index = 0):
 
-		cls.coord           = new_corrd
-		cls.movieballs      = new_movieballs
-		cls.Moviemons       = new_Moviemons
-		cls.My_Moviemons    = new_My_Moviemons
-		cls.MoviemonBattle  = new_MoviemonBattle
-		cls.Strenght        = new_Strenght
-		cls.mapx			= new_mapx
-		cls.mapy            = new_mapy
-		cls.index			= new_index
+		self.coord           = new_corrd
+		self.movieballs      = new_movieballs
+		self.Moviemons       = new_Moviemons
+		self.My_Moviemons    = new_My_Moviemons
+		self.MoviemonBattle  = new_MoviemonBattle
+		self.Strenght        = new_Strenght
+		self.mapx			= new_mapx
+		self.mapy            = new_mapy
+		self.index			= new_index
 
 	def move_coord(self, x, y):
 		self.coord[0] = x
@@ -71,7 +72,8 @@ class Gestion():
 	def del_battlemovie(self, moviemon_id):
 		self.MoviemonBattle = ''
 
-	def load(self, name):
+	def load(self):
+		name = self.sessionName
 		info = []
 		print(name,os.path.isfile(name))
 		if os.path.isfile(name):
@@ -91,14 +93,14 @@ class Gestion():
 						   info[0][6],
 						   info[0][7],
 						   info[0][8])
-			self.save('info.pickle')
+			self.save()
 			openfile.close()
 			return info[0]
 		return ("Free")
 
 	def dump(self):
 		info = []
-		with (open("info.pickle", "rb")) as openfile:
+		with (open(self.sessionName, "rb")) as openfile:
 			while True:
 				try:
 					info.append(pickle.load(openfile))
@@ -114,9 +116,11 @@ class Gestion():
 
 	def load_default_settings(self):
 		self.set_default()
-		F = open("info.pickle", "wb")
+		omdb = getattr(settings, "OMDB", None)
+		F = open(self.sessionName, "wb")
 		for item in self.lst:
-			r = requests.get("http://www.omdbapi.com/?t=" + item + "&apikey=xxxxxxxx")
+			url = omdb['url'] + item + "&apikey=" + omdb['key'];
+			r = requests.get(url)
 			if r.status_code != 200:
 				raise Exception ("Error: " + str(r.status_code))
 			Moviemon = json.loads(r.text)
@@ -147,8 +151,8 @@ class Gestion():
 		info = self.dump()
 		return list(info[3].keys())
 
-	def save(self, name):
-		F = open(name, "wb")
+	def save(self):
+		F = open(self.sessionName, "wb")
 		info = [
 				self.coord,
 				self.movieballs,
