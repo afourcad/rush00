@@ -1,0 +1,17 @@
+{% extends "moviemons/base.html" %}
+
+{% block grid %}
+
+<center>MOVIEDEX</center>
+
+<ul>
+{%for title,value in dico.items %}
+	<li>
+		<div class ="imgmon {% if title == cursor %} tuning {% endif %}" style="background-image:url('{{value.Poster}}');">
+
+		</div>
+	</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

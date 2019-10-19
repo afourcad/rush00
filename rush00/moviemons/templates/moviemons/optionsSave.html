@@ -1,0 +1,17 @@
+{% extends "moviemons/base.html" %}
+
+{% block grid %}
+<center>Savegame
+<br /><br /><br />
+{% for key, value in slotsMy %}
+	<p class= "{% if name == key %} test {% endif %}">
+			{% if name == key %} -> {% endif %}
+			{{ key }} | {{value}} /
+			{% for kay, valay in slotsmon %}
+				{% if key == kay %} {{valay}} {% endif %}
+			{% endfor %}
+			{% if not value %} Free {% endif %}
+	</p>
+{% endfor %}
+</center>
+{% endblock %}

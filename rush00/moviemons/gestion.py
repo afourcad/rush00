@@ -72,8 +72,31 @@ class Gestion():
 	def del_battlemovie(self, moviemon_id):
 		self.MoviemonBattle = ''
 
-	def load(self):
-		name = self.sessionName
+	def prefix_load(self, name=None):
+		if (not name):
+			return None;
+		info = []
+		list_of_files = os.listdir('./saved_game')
+		print(list_of_files);
+		for each_file in list_of_files:
+		    if each_file.startswith(name) and os.path.isfile('./saved_game' + name):
+		    	name = './saved_game' + name;
+		    	with (open(name, "rb")) as openfile:
+		    		while True:
+		    			try:
+		    				print("Chargement fichier :", name);
+		    				info.append(pickle.load(openfile))
+		    				print("load index", info[0][8]);
+		    			except EOFError:
+		    				break
+		    	self.set_value(info[0][0], info[0][1], info[0][3], info[0][2], info[0][4], info[0][5], info[0][6], info[0][7], info[0][8])
+		    	openfile.close()
+		    	return info[0]
+		return ("Free")
+
+	def load(self, name=None):
+		if (not name):
+			name = self.sessionName
 		info = []
 		print(name,os.path.isfile(name))
 		if os.path.isfile(name):
@@ -82,6 +105,7 @@ class Gestion():
 					try:
 						print("Chargement fichier :", name);
 						info.append(pickle.load(openfile))
+						print("load index", info[0][8]);
 					except EOFError:
 						break
 			self.set_value(info[0][0],
@@ -93,10 +117,28 @@ class Gestion():
 						   info[0][6],
 						   info[0][7],
 						   info[0][8])
-			self.save()
 			openfile.close()
 			return info[0]
 		return ("Free")
+
+	def save(self, name=None):
+		if (not name):
+			name = self.sessionName
+		F = open(name, "wb")
+		info = [
+				self.coord,
+				self.movieballs,
+				self.My_Moviemons,
+				self.Moviemons,
+				self.MoviemonBattle,
+				self.Strenght,
+				self.mapx,
+				self.mapy,
+				self.index
+			]
+		print("saved index", self.index);	
+		pickle.dump(info, F)
+		F.close()
 
 	def dump(self):
 		info = []
@@ -151,22 +193,7 @@ class Gestion():
 		info = self.dump()
 		return list(info[3].keys())
 
-	def save(self):
-		F = open(self.sessionName, "wb")
-		info = [
-				self.coord,
-				self.movieballs,
-				self.My_Moviemons,
-				self.Moviemons,
-				self.MoviemonBattle,
-				self.Strenght,
-				self.mapx,
-				self.mapy,
-				self.index
-			]
 
-		pickle.dump(info, F)
-		F.close()
 
 
 # singleton object
