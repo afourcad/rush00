@@ -119,3 +119,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MOVIEMON = {
+    'MOVIES' : [
+                    'Zombie Nation',
+                    'Terror',
+                    'Pride and Prejudice and Zombies',
+                    'Manos: The Hands of Fate',
+                    'avatar',
+                    'saw',
+                    'Aliens',
+                    'horror',
+                    'rocky horror picture show',
+                    'hellboy',
+                    'Freddy'],
+    'INITIAL_PLAYER_POS' : [50, 50],
+    'GRID_SIZE': [0, 100]
+}

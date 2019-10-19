@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-def index(request):
-     return render(request, "moviemons/base.html")
+def new(request):
+	return render(self,  "moviemons/base.html", {});
