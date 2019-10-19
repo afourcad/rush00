@@ -1,0 +1,65 @@
+/* body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+
+.consoleArea, .screen, .arrow, .middleButtons, .ABButtons{
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
+.consoleArea{
+    margin: auto;
+    width: 550px;
+    height: 900px;
+    display: flex;  
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: whitesmoke;
+}
+
+.screen{
+    width: 500px;
+    height: 500px;
+    margin: auto;
+}
+
+.controls{
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+tr, td{
+    width: 35px;
+    height: 35px;
+}
+
+.arrow .buttonArrow{
+    color: grey;
+     background-image: linear-gradient(45deg, grey, #474748);
+    border: 5px solid #5c5c5d;
+}
+
+.ABButtons .buttonAB{
+    color: red;
+    background-image: linear-gradient(45deg, red, #fa5961);
+    border: 5px solid #dd4848;
+}
+
+.middleButtons{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.middleButtons, .optSlectButton{
+    margin: 10px;
+    height: 15px;
+    width: 35px;
+}

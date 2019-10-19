@@ -4,5 +4,5 @@ from . import views
 
 app_name='moviemons'
 urlpatterns = [
-    # re_path('', views.),
+    re_path('', views.index)
 ]
