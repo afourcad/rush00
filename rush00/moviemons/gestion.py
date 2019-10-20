@@ -5,6 +5,7 @@ class Gestion():
 
 	def __init__(self):
 		self.sessionName = 'session.pickle'
+		self.set_default()
 		params = getattr(settings, "MOVIEMON", None)
 		if not params:
 			print('Missing setting MOVIEMON')
