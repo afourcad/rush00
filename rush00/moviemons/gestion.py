@@ -197,31 +197,4 @@ class Gestion():
 
 
 # singleton object
-session = Gestion();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+session = Gestion()
