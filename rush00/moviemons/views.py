@@ -206,6 +206,8 @@ def Moviedex(request):
 	session.My_Moviemons.sort()
 
 	if request.GET.get('a') == 'select':
+		session.index = 0;
+		session.save();
 		return redirect('/worldmap')
 
 	if (len(session.My_Moviemons)):
@@ -222,7 +224,7 @@ def Moviedex(request):
 
 		if request.GET.get('a') == 'a':
 			return redirect('/moviedex/'+session.My_Moviemons[session.index])
-
+		
 		return render(request, "moviemons/moviedex.html", {"dico": newdico, "cursor": session.My_Moviemons[session.index]})
 	else:
 		return render(request, "moviemons/moviedex.html")
