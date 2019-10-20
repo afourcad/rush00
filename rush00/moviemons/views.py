@@ -161,6 +161,8 @@ def OptionsSave(request):
 	print("index", session.index);
 
 	session.save()
+	print("smy",slotsMy);
+	print("smon",slotsmon);
 	if request.GET.get('a') == 'start':
 		return redirect('/options/save_game')
 	if request.GET.get('a') == 'a':
@@ -182,11 +184,14 @@ def OptionsLoad(request):
 		session.index = (session.index +1) % 3
 
 	if request.GET.get('process') == '1':
-		session.load(slots[session.index])
-		session.save()
-		return redirect('/worldmap')
+		if (slotsmon[session.index][1] != 0):
+			session.load(slots[session.index])
+			session.save()
+			return redirect('/worldmap')
 
-	# session.save()
+	session.save()
+	print("smy",slotsMy);
+	print("smon",slotsmon);
 	if request.GET.get('a') == 'start':
 		return redirect('/options/load_game')
 	if request.GET.get('a') == 'a':

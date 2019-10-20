@@ -9,9 +9,10 @@ Press A for Load<br />
 			{% if name == key %} -> {% endif %}
 			{{ key }} | {{value}} /
 			{% for kay, valay in slotsmon %}
-				{% if key == kay %} {{valay}} {% endif %}
+				{% if key == kay %} {{valay}}
+					{% if not valay %} Free {% endif %}
+				{% endif %}
 			{% endfor %}
-			{% if value == 0 %} Free {% endif %}
 	</p>
 {% endfor %}
 </center>

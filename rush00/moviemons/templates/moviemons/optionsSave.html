@@ -8,9 +8,10 @@
 			{% if name == key %} -> {% endif %}
 			{{ key }} | {{value}} /
 			{% for kay, valay in slotsmon %}
-				{% if key == kay %} {{valay}} {% endif %}
+				{% if key == kay %} {{valay}}
+					{% if not valay %} Free {% endif %}
+				{% endif %}
 			{% endfor %}
-			{% if not value %} Free {% endif %}
 	</p>
 {% endfor %}
 </center>
