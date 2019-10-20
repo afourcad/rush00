@@ -1,19 +1,21 @@
 {% extends "moviemons/base.html" %}
 
 {% block grid %}
-<center>Loadgame
-<br /><br />
-Press A for Load<br />
-{% for key, value in slotsMy %}
-	<p class= "{% if name == key %} test {% endif %}">
-			{% if name == key %} -> {% endif %}
-			{{ key }} | {{value}} /
-			{% for kay, valay in slotsmon %}
-				{% if key == kay %} {{valay}}
-					{% if not valay %} Free {% endif %}
-				{% endif %}
+<div class="title_screen">
+		<div class="instructions">
+			<h3>Loadgame</h3>
+				Press A for Load<br />
+			{% for key, value in slotsMy %}
+				<p class= "{% if name == key %} test {% endif %}">
+						{% if name == key %} -> {% endif %}
+						{{ key }} | {{value}} /
+						{% for kay, valay in slotsmon %}
+							{% if key == kay %} {{valay}}
+								{% if not valay %} Free {% endif %}
+							{% endif %}
+						{% endfor %}
+				</p>
 			{% endfor %}
-	</p>
-{% endfor %}
-</center>
+		</div>
+	</div>
 {% endblock %}

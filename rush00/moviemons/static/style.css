@@ -28,10 +28,12 @@ body{
     height: 500px;
     margin: auto;
     border: 3px solid black;
+    overflow-y: auto; 
 }
 .screenBox{
     display: flex;
     flex-direction: column;
+    /* overflow-y:hidden ; */
     /* align-items: center; */
     /* justify-content: center; */
 }
@@ -148,10 +150,44 @@ a {
 
 .message{
     position: absolute;
-    width: 80%;
+    width: 80%; 
     height: 20%;
-    color: tomato;
+    color: red;
     top: 30%;
     left: 10%;
     text-align: center;
+}
+.messageBattle{
+    position: absolute;
+    width: 80%; 
+    height: 20%;
+    color: red;
+    bottom: 40%;
+    left: 10%;
+    text-align: center;
+}
+
+.battle, .detail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding:5%;
+}
+
+.imgmon{
+    height: 100px;
+    width: 72px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.screen li{
+    display: inline-block;
+    width: 20%;
+}
+
+.tuning{
+    border: 3px solid rgba(165, 7, 7, 0.63);
+    border-radius: 4px;
 }
