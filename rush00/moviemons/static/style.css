@@ -118,13 +118,11 @@ a {
     position: relative;
 }
 
-.player[data-x][data-y]{
+.player[data-x=1][data-y=1]{
     width: 10%;
     height: 10%;
     background-image: url('character.png');
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
-    left: 50%;
-    top:  90%;
 }

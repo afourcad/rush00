@@ -60,6 +60,7 @@ class Gestion():
 		self.coord[0] = x
 		self.coord[1] = y
 
+
 	def modif_movieballs(self, nb):
 		self.movieballs = nb
 
@@ -193,9 +194,6 @@ class Gestion():
 	def get_all_movies(self):
 		info = self.dump()
 		return list(info[3].keys())
-
-
-
 
 # singleton object
 session = Gestion()
