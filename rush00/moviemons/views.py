@@ -99,12 +99,14 @@ def Battle(request, moviemon_id):
 				session.movieballs -= 1
 				if (capture(calcul(session.Moviemons[moviemon_id]['imdbRating'], session.Strenght))):
 					session.My_Moviemons.append(moviemon_id)
-					remarque = moviemon_id +  " Captured !"
+					remarque = moviemon_id +  " Captured ! B to exit the Battle"
 					session.MoviemonBattle = ""
 					session.Strenght += 1
+				else:
+					remarque = "Missed this time, press A to try again!"
 			else:
 				print("Moquerie")
-				remarque = "Dommage ! C'est vide ! B pour continuer ..."
+				remarque = "Dame no more balls!, try to collect more first. B to exit"
 
 	if request.GET.get('a') == 'b':
 		session.MoviemonBattle = []
@@ -127,7 +129,6 @@ def OptionsSave(request):
 	dirtybase = Gestion()
 	slotsMy = []
 	slotsmon = []
-	# progression = [3]
 	slots = ["slotA.pickle", "slotB.pickle", "slotC.pickle"]
 	slotscut = ["slotA", "slotB", "slotC"]
 	i = 0
@@ -166,7 +167,6 @@ def OptionsLoad(request):
 	dirtybase = Gestion()
 	slotsMy = []
 	slotsmon = []
-	# progression = [3]
 	slots = ["slotA.pickle", "slotB.pickle", "slotC.pickle"]
 	slotscut = ["slotA", "slotB", "slotC"]
 	i = 0
@@ -213,9 +213,9 @@ def Moviedex(request):
 
 		print(session.index)
 		if (len(session.My_Moviemons)):
-			if request.GET.get('a') == 'right':
+			if request.GET.get('a') == 'down':
 				session.index = (session.index  + 1) %len(session.My_Moviemons)
-			if request.GET.get('a') == 'left':
+			if request.GET.get('a') == 'up':
 				session.index = (session.index  + -1) %len(session.My_Moviemons)
 			session.save()
 
@@ -223,15 +223,16 @@ def Moviedex(request):
 			return redirect('/moviedex/'+session.My_Moviemons[session.index])
 
 		session.My_Moviemons.sort()
-		return render(request, "moviemons/moviedex.html", {"dico": newdico, "cursor": db.My_Moviemons[db.index]})
+		print("dico", newdico);
+		return render(request, "moviemons/moviedex.html", {"dico": newdico, "cursor": session.My_Moviemons[session.index]})
 	else:
 		return render(request, "moviemons/moviedex.html")
 
 def MoviedexDetail(request, moviemon_id):
-	session.load("save.pickle")
+	session.load()
 	if request.GET.get('a') == 'b':
 		return redirect('/moviedex')
-	return render(request, "moviemons/moviedexdetail.html", {"detail": db.Moviemons[moviemon_id]})
+	return render(request, "moviemons/moviedexdetail.html", {"detail": session.Moviemons[moviemon_id]})
 
 def Options(request):
 	if request.GET.get('a') == 'start':
