@@ -56,11 +56,6 @@ class Gestion():
 		self.mapy            = new_mapy
 		self.index			= new_index
 
-	def move_coord(self, x, y):
-		self.coord[0] = x
-		self.coord[1] = y
-
-
 	def modif_movieballs(self, nb):
 		self.movieballs = nb
 

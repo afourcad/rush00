@@ -125,13 +125,12 @@ def Battle(request, moviemon_id):
 		"Luck" : calcul(session.Moviemons[moviemon_id]['imdbRating'], session.Strenght)
 	})
 
-def OptionsSave(request):
+def load_slots():
 	dirtybase = Gestion()
 	slotsMy = []
 	slotsmon = []
 	slots = ["slotA.pickle", "slotB.pickle", "slotC.pickle"]
 	slotscut = ["slotA", "slotB", "slotC"]
-	i = 0
 	for slot in slots:
 		if (dirtybase.load(slot) != 'Free'):
 			slotsMy.append([slot[0:5], len(dirtybase.My_Moviemons)])
@@ -139,7 +138,14 @@ def OptionsSave(request):
 		else:
 			slotsMy.append([slot[0:5], 0])
 			slotsmon.append([slot[0:5], 0])
+	return slotsMy, slotsmon
 
+
+def OptionsSave(request):
+	slotsMy, slotsmon = load_slots();
+	slots = ["slotA.pickle", "slotB.pickle", "slotC.pickle"]
+	slotscut = ["slotA", "slotB", "slotC"]
+	
 	session.load()
 	if request.GET.get('a') == 'up':
 		session.index = (session.index - 1) % 3
@@ -150,6 +156,7 @@ def OptionsSave(request):
 		name = 'saved_game/' + slotscut[session.index] + "_" + str(len(session.My_Moviemons)) + "_" + str(len(session.Moviemons)) + ".mmg"
 		session.save(name)
 		session.save(slots[session.index])
+		return redirect('/options/save_game')
 
 	print("index", session.index);
 
@@ -164,19 +171,9 @@ def OptionsSave(request):
 
 
 def OptionsLoad(request):
-	dirtybase = Gestion()
-	slotsMy = []
-	slotsmon = []
+	slotsMy, slotsmon = load_slots();
 	slots = ["slotA.pickle", "slotB.pickle", "slotC.pickle"]
 	slotscut = ["slotA", "slotB", "slotC"]
-	i = 0
-	for slot in slots:
-		if (dirtybase.load(slot) != 'Free'):
-			slotsMy.append([slot[0:5], len(dirtybase.My_Moviemons)])
-			slotsmon.append([slot[0:5], len(dirtybase.Moviemons)])
-		else:
-			slotsMy.append([slot[0:5], 0])
-			slotsmon.append([slot[0:5], 0])
 
 	session.load()
 	if request.GET.get('a') == 'up':
@@ -189,7 +186,7 @@ def OptionsLoad(request):
 		session.save()
 		return redirect('/worldmap')
 
-	session.save()
+	# session.save()
 	if request.GET.get('a') == 'start':
 		return redirect('/options/load_game')
 	if request.GET.get('a') == 'a':
