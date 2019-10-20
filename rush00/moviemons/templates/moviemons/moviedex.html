@@ -7,8 +7,8 @@
 <ul>
 {%for title,value in dico.items %}
 	<li>
+			<!-- <h3>{% if title == cursor %} -	> {% endif %}{{ title }}</h3> -->
 		<div class ="imgmon {% if title == cursor %} tuning {% endif %}" style="background-image:url('{{value.Poster}}');">
-			<h3 style="color: white">{% if title == cursor %} -	> {% endif %}{{ title }}</h3>
 		</div>
 	</li>
 {% endfor %}

@@ -131,8 +131,11 @@ MOVIEMON = {
                     'Aliens',
                     'horror',
                     'rocky horror picture show',
-                    'hellboy',
-                    'Freddy'],
+                    'the rocketeer',
+                    'legally blonde',
+                    'disaster movie',
+                    'house of the dead',
+                    'daniel the wizard'],
     'INITIAL_PLAYER_POS' : [5, 5],
     'GRID_SIZE': [0, 9]
 }
@@ -141,3 +144,7 @@ OMDB = {
     'url': 'http://www.omdbapi.com/?t=',
     'key': '89ef1ac6'
 }
+
+# 'django', 'titanic', , , , 'catch me if you can', 'gladiator',
+#     'arrival', 'suicide squad',  'the dark tower', , 'lord of war', 'the shape of water',
+#     'raiders of the lost ark', 'anatomy of a murder', 'the jungle book', 'kazaam', 'pledge this!', 'saving christmas', 'epic movie', 'alone in the dark'

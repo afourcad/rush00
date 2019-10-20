@@ -1,23 +1,18 @@
 {% extends "moviemons/base.html" %}
 
 {% block grid %}
-<div class="poster" style="background-image:url('{{detail.Poster}}'); color: white">
-<div class="miniaturedetail">
-
-
-
-<div class="detail2">
-	{{detail.Title}}<br/>
-	{{detail.Director}}<br/>
-	{{detail.imdbRating}}<br/>
-	{{detail.Year}}<br/>
-	{{detail.Actors}}<br/>
-	<span>
-	{{detail.Plot}}
-	</span>
-</div>
-</div>
-
-
+<div class="detail">
+    <img src="{{detail.Poster}}" width="100"/>
+	<br />
+	<article>
+		<h3>{{detail.Title}}</h3>
+		<h4>{{detail.Director}}</h4>
+			{{detail.imdbRating}} / 5<br/>
+			{{detail.Year}}<br/>
+			{{detail.Actors}}<br/>
+			<p>
+				{{detail.Plot}}
+			</p>
+	</article>
 </div>
 {% endblock %}
