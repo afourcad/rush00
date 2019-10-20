@@ -1,11 +1,18 @@
 {% extends "moviemons/base.html" %}
 
 {% block grid %}
-<div class="gameDiv">
-	<div class="player" data-x={{mapx}} data-y={{mapy}}></div>
-	{% if stat == "attack" %}<div class="message">Attacked by {{movietitle}} press A to battle press B to escape</div>{% endif %}
-	<div class="moviballs"> MovieBalls: {{movieball}} {% if stat == "ball" %} -> +1 MovieBall {% endif %}
-		<div class="coord">[{{mapx}} : {{mapy}}]</div>
+<div class="screenBox">
+	<div class="gameDiv">
+		<div class="player" data-x={{mapx}} data-y={{mapy}}></div>
+		{% if stat == "attack" %}<div class="message">
+			<p><h2>Attacked by {{movietitle}}</h2>
+			-- Press A to battle --
+			</br>-- Press B to escape --
+			</p>
+		</div>{% endif %}
+	</div>
+	<div class="movieballs">
+		MovieBalls: {{movieball}} {% if stat == "ball" %} -> +1 MovieBall {% endif %}
 	</div>
 </div>
 {% endblock %}
