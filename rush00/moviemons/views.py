@@ -153,9 +153,10 @@ def OptionsSave(request):
 		session.index = (session.index +1) % 3
 
 	if request.GET.get('process') == '1':
-		name = 'saved_game/' + slotscut[session.index] + "_" + str(len(session.My_Moviemons)) + "_" + str(len(session.Moviemons)) + ".mmg"
-		session.save(name)
-		session.save(slots[session.index])
+		if (len(session.My_Moviemons) > 0 and len(session.Moviemons) > 0):
+			name = 'saved_game/' + slotscut[session.index] + "_" + str(len(session.My_Moviemons)) + "_" + str(len(session.Moviemons)) + ".mmg"
+			session.save(name)
+			session.save(slots[session.index])
 		return redirect('/options/save_game')
 
 	print("index", session.index);
