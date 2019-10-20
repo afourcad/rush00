@@ -201,6 +201,7 @@ def OptionsLoad(request):
 def Moviedex(request):
 	session.load()
 	newdico = {}
+	session.My_Moviemons.sort()
 
 	if request.GET.get('a') == 'select':
 		return redirect('/worldmap')
@@ -208,8 +209,6 @@ def Moviedex(request):
 	if (len(session.My_Moviemons)):
 		for elem in session.My_Moviemons:
 			newdico[elem] = session.Moviemons[elem]
-
-		session.My_Moviemons.sort()
 
 		print(session.index)
 		if (len(session.My_Moviemons)):
@@ -222,8 +221,6 @@ def Moviedex(request):
 		if request.GET.get('a') == 'a':
 			return redirect('/moviedex/'+session.My_Moviemons[session.index])
 
-		session.My_Moviemons.sort()
-		print("dico", newdico);
 		return render(request, "moviemons/moviedex.html", {"dico": newdico, "cursor": session.My_Moviemons[session.index]})
 	else:
 		return render(request, "moviemons/moviedex.html")
