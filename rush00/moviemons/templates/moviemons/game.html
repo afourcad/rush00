@@ -2,7 +2,7 @@
 
 {% block grid %}
 	<div class="player" data-x={{mapx}} data-y={{mapy}}></div>
-	{% if etat == "attack" %}<div class="message">Attaque de {{movietitle}}</div>{% endif %}
+	{% if stat == "attack" %}<div class="message">Attacked by {{movietitle}} press A to battle press B to escape</div>{% endif %}
 	<div class="moviballs"> MovieBalls: {{movieball}} {% if stat == "ball" %} -> +1 MovieBall {% endif %}
 		<div class="coord">[{{mapx}} : {{mapy}}]</div>
 	</div>

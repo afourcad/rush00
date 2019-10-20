@@ -19,8 +19,8 @@ class Gestion():
 		params = getattr(settings, "MOVIEMON", None)
 		if not params:
 			print('Missing setting MOVIEMON')
-			self.mapx = 50
-			self.mapy = 50
+			self.mapx = 5
+			self.mapy = 5
 		else:
 			pos = params['INITIAL_PLAYER_POS']
 			self.mapx = pos[0]
@@ -42,8 +42,8 @@ class Gestion():
 				new_My_Moviemons,
 				new_MoviemonBattle = [],
 				new_Strenght = 0,
-				new_mapx = 50,
-				new_mapy = 50,
+				new_mapx = 5,
+				new_mapy = 5,
 				new_index = 0):
 
 		self.coord           = new_corrd
@@ -167,6 +167,7 @@ class Gestion():
 				raise Exception ("Error: " + str(r.status_code))
 			Moviemon = json.loads(r.text)
 			self.Moviemons[Moviemon['Title'].replace(" ", "_").replace(":", "-")] = Moviemon
+		print("x, y", self.mapx, self.mapy);
 		info = [
 				self.coord,
 				self.movieballs,

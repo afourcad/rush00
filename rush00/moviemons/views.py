@@ -2,6 +2,9 @@ from django.shortcuts import render, HttpResponse, redirect
 from moviemons.gestion import session, Gestion
 from django.conf import settings
 import random
+from datetime import datetime
+
+random.seed(datetime.now())
 
 # Create your views here.
 def new(request):
@@ -12,12 +15,11 @@ def new(request):
 		return redirect('/worldmap')
 	if request.GET.get('a') == 'b':
 		return redirect('/options/load_game')
-		return render(request,  "moviemons/title_screen.html", {});
 	return render(request,  "moviemons/title_screen.html", {});
 
 def Worldmap(request):
 	MAPMIN = 0
-	MAPMAX = 100
+	MAPMAX = 9
 	params = getattr(settings, "MOVIEMON", None)
 	if (params):
 		pos = params['GRID_SIZE']
@@ -93,11 +95,8 @@ def Battle(request, moviemon_id):
 		else:
 			return redirect('/')
 		if request.GET.get('a') == 'a':
-			#print(db.Moviemons[moviemon_id])
-			# print(imdbRating)
 			if session.movieballs > 0:
 				session.movieballs -= 1
-				# print(db.Moviemons[moviemon_id]['imdbRating'])
 				if (capture(calcul(session.Moviemons[moviemon_id]['imdbRating'], session.Strenght))):
 					session.My_Moviemons.append(moviemon_id)
 					remarque = moviemon_id +  " Captured !"
@@ -109,14 +108,12 @@ def Battle(request, moviemon_id):
 
 	if request.GET.get('a') == 'b':
 		session.MoviemonBattle = []
-		session.save("save.pickle")
+		session.save()
 		return redirect('/worldmap')
 
 	print("Print db.moviemon: ",moviemon_id , " : \n",session.Moviemons[moviemon_id])
 	print("NB balls:",session.movieballs)
 
-	# if moviemon_id in db.Moviemons:
-	# 	db.add_moviemons(moviemon_id)
 	session.save()
 	return render(request, "moviemons/battle.html", {
 		"DicoMovie":session.Moviemons[moviemon_id],

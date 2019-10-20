@@ -133,8 +133,8 @@ MOVIEMON = {
                     'rocky horror picture show',
                     'hellboy',
                     'Freddy'],
-    'INITIAL_PLAYER_POS' : [50, 50],
-    'GRID_SIZE': [0, 100]
+    'INITIAL_PLAYER_POS' : [5, 5],
+    'GRID_SIZE': [0, 9]
 }
 
 OMDB = {
